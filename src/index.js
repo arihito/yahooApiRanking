@@ -1,21 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore, combineReducers, applyMiddleware} from 'redux';
-import logger from 'redux-logger';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import createBrowserHistory from 'history/createBrowserHistory';
+
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import * as reducers from './reducers';
+import createStore from './createStore';
 
-const store = createStore(
-// reducreを結合
-combineReducers(reducers),
-// ミドルウェアの読み込み
-applyMiddleware(logger));
+const history = createBrowserHistory();
+const store = createStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-  <App/>
-</Provider>, document.getElementById('root'));
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
 registerServiceWorker();
