@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
-import Ranking from './components/Ranking';
+import Ranking from './containers/Ranking';
 import logo from './logo.svg';
 import './App.css';
 
